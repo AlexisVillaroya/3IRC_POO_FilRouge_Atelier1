@@ -149,8 +149,8 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 		
 		if(outputControllerDataRetour.isMoveDone) {
 			Integer capturedPieceIndex = transformCoordToIndex(outputControllerDataRetour.capturedPieceCoord);
-			Integer promotedPieceIndex= transformCoordToIndex(outputControllerDataRetour.promotedPieceCoord);
-			PieceSquareColor promotedPieceColor= outputControllerDataRetour.promotedPieceColor;
+			Integer promotedPieceIndex = transformCoordToIndex(outputControllerDataRetour.promotedPieceCoord);
+			PieceSquareColor promotedPieceColor = outputControllerDataRetour.promotedPieceColor;
 			InputViewData data = new InputViewData(toMovePieceIndex,targetSquareIndex,capturedPieceIndex,promotedPieceIndex,promotedPieceColor);
 			view.actionOnGui(data);
 		}

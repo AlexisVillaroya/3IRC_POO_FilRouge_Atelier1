@@ -51,7 +51,7 @@ public class PawnModel implements PieceModel{
 		int ligDistance = targetCoord.getLigne() - this.getLigne();
 		int deltaLig = (int) Math.signum(ligDistance);
 		
-		// Cas d'un déplacement en diagonale
+		// Cas d'un dï¿½placement en diagonale
 		if (Math.abs(colDistance) == Math.abs(ligDistance)){
 			
 			// sans prise
@@ -74,8 +74,42 @@ public class PawnModel implements PieceModel{
 	public List<Coord> getCoordsOnItinerary(Coord targetCoord) {
 
 		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
-
-		// TODO Atelier 2
+		int colDistance = targetCoord.getColonne() - this.getColonne();
+		int ligDistance = targetCoord.getLigne() - this.getLigne();
+		int absColDistance = Math.abs(colDistance);
+		int absLigDistance = Math.abs(ligDistance);
+		if( absColDistance == absLigDistance ) {
+			// Gerer les dÃ©placements 
+			// Si 
+			if (colDistance > 0 && ligDistance > 0) { // Black vers le bas 
+				char compteur = this.coord.getColonne();
+				for (int i = this.coord.getLigne()+1; i < targetCoord.getLigne(); i++) {
+					compteur +=1;
+					coordsOnItinery.add(new Coord(compteur, i));
+				}
+			}
+			else if(colDistance > 0 && ligDistance < 0) { // White vers le haut
+				char compteur = this.coord.getColonne();
+				for (int i = this.coord.getLigne()-1; i > targetCoord.getLigne(); i--) {
+					compteur +=1;
+					coordsOnItinery.add(new Coord(compteur, i));
+				}
+			}
+			else if(colDistance < 0 && ligDistance < 0) { // 
+				char compteur = this.coord.getColonne();
+				for (int i = this.coord.getLigne()-1; i > targetCoord.getLigne(); i--) {
+					compteur --;
+					coordsOnItinery.add(new Coord(compteur, i));
+				}
+			}
+			else {
+				char compteur = this.coord.getColonne();
+				for (int i = this.coord.getLigne()+1; i < targetCoord.getLigne(); i++) {
+					compteur --;
+					coordsOnItinery.add(new Coord(compteur, i));
+				}
+			}
+		}
 		
 		return coordsOnItinery;
 	}
